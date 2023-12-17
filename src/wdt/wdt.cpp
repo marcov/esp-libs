@@ -6,8 +6,7 @@ static unsigned wdt_timeout_ms = 30000;
 static unsigned wdtLastKick;
 Ticker wdtTimer;
 
-
-static void ICACHE_RAM_ATTR wdtTimeoutCB(void)
+static void IRAM_ATTR wdtTimeoutCB(void)
 {
     unsigned long timeSinceLastKick = millis() - wdtLastKick;
 

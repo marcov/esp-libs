@@ -2,7 +2,6 @@
 #include <Wire.h>
 #include "i2c.hh"
 
-
 void I2C::init(volatile void *p_i2c_peripheral)
 {
     (void)p_i2c_peripheral;
@@ -37,7 +36,7 @@ int I2C::rx(uint8_t * p_data, uint32_t len)
 
     Wire.requestFrom(slave_addr, len, true);
 
-    while (Wire.available() < len)
+    while (static_cast<uint32_t>(Wire.available()) < len)
     {
         if (++tries >= I2C_READ_TRIES)  return -1;
         delay(50);
